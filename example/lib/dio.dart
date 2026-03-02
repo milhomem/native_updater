@@ -62,7 +62,7 @@ class _HomeState extends State<Home> {
 
     try {
       await dio.get('/get');
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       var code = e.response?.statusCode;
       if(code != null){
         checkVersion(code);

@@ -14,7 +14,8 @@ class UpdateMaterialAlert extends StatelessWidget {
   final String ignoreButtonLabel;
   final String newVersionLabel;
 
-  UpdateMaterialAlert({
+  const UpdateMaterialAlert({
+    super.key,
     required this.forceUpdate,
     required this.appName,
     required this.playStoreUrl,
@@ -45,9 +46,14 @@ class UpdateMaterialAlert extends StatelessWidget {
 
     Widget updateButton = TextButton(
       child: Text(updateButtonLabel.toUpperCase(),
-          style: TextStyle(color: Colors.white)),
+          style: const TextStyle(color: Colors.white)),
       style: flatButtonStyle,
-      onPressed: () => launch(playStoreUrl),
+      onPressed: () async {
+        final Uri url = Uri.parse(playStoreUrl);
+        if (await canLaunchUrl(url)) {
+          await launchUrl(url, mode: LaunchMode.externalApplication);
+        }
+      },
     );
 
     return AlertDialog(
@@ -59,11 +65,11 @@ class UpdateMaterialAlert extends StatelessWidget {
         children: <Widget>[
           Text(
             newVersionLabel,
-            style: TextStyle(color: Colors.grey),
+            style: const TextStyle(color: Colors.grey),
           ),
-          SizedBox(height: 24.0),
+          const SizedBox(height: 24.0),
           Text(description),
-          SizedBox(height: 24.0),
+          const SizedBox(height: 24.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
@@ -71,9 +77,9 @@ class UpdateMaterialAlert extends StatelessWidget {
               updateButton,
             ],
           ),
-          SizedBox(height: 16.0),
-          Divider(),
-          SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
+          const Divider(),
+          const SizedBox(height: 16.0),
           Image.asset(
             'packages/native_updater/images/google_play.png',
             width: 120.0,

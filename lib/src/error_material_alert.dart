@@ -33,11 +33,10 @@ class ErrorMaterialAlert extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          if (errorSubtitle != null || errorSubtitle == null)
-            Text(
-              errorSubtitle ?? 'Can\'t perform update.',
-              style: const TextStyle(color: Colors.grey),
-            ),
+          Text(
+            errorSubtitle ?? 'Can\'t perform update.',
+            style: const TextStyle(color: Colors.grey),
+          ),
           const SizedBox(height: 24.0),
           Text(description),
           const SizedBox(height: 24.0),
