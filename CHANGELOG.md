@@ -1,3 +1,10 @@
+## [0.1.5] - 02/03/2026
+
+- Replicate upstream dependency/example updates from `ofload/native_updater` PR #40.
+- Add `dio: ^5.2.1+1` to **example** dependencies.
+- Update Dio example to use `DioException` handling compatible with Dio 5.
+- Credit: original PR authored by [@benthemobileguy](https://github.com/benthemobileguy) (Ben CHUKWUMA).
+
 ## [0.1.4] - 02/03/2026
 
 - Replicate upstream Dart SDK constraint bump from `ofload/native_updater` PR #35.
