@@ -1,3 +1,10 @@
+## [0.1.2] - 02/03/2026
+
+- Migrate to `package_info_plus` for compatibility with current Flutter ecosystem.
+- Update example project dependency resolution for newer toolchains.
+- Improve Dio example by safely handling nullable HTTP status codes.
+- Add and expand contribution + community PR release workflow documentation.
+
 ## [0.1.1] - 19/12/2021
 
 - Keeping dependencies up-to-date
