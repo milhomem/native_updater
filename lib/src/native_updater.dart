@@ -111,11 +111,17 @@ class NativeUpdater {
 
       if (_updateInfo.updateAvailability == UpdateAvailability.updateAvailable) {
         if (_forceUpdate == true) {
-          InAppUpdate.performImmediateUpdate()
-              .catchError((e) => developer.log(e.toString()));
+          try {
+            await InAppUpdate.performImmediateUpdate();
+          } catch (e) {
+            developer.log(e.toString());
+          }
         } else if (_forceUpdate == false) {
-          InAppUpdate.startFlexibleUpdate()
-              .catchError((e) => developer.log(e.toString()));
+          try {
+            await InAppUpdate.startFlexibleUpdate();
+          } catch (e) {
+            developer.log(e.toString());
+          }
         }
       }
     } on PlatformException catch (e) {
