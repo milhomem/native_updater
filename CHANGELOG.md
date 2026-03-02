@@ -1,3 +1,10 @@
+## [0.1.3] - 02/03/2026
+
+- Replicate upstream AndroidX compatibility fix from `ofload/native_updater` PR #39.
+- Update `in_app_update` to `^4.0.1`.
+- Update example Android manifest to use `${applicationName}` for modern Flutter Android embedding compatibility.
+- Credit: original fix authored by [@Heatclift](https://github.com/Heatclift) (Herbert Calmerin).
+
 ## [0.1.2] - 02/03/2026
 
 - Migrate to `package_info_plus` for compatibility with current Flutter ecosystem.
