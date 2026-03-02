@@ -1,0 +1,33 @@
+name: Publish to pub.dev
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    # Avoid accidental publishes from forks with the same workflow.
+    if: github.repository == 'milhomem/native_updater'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Dart SDK
+        uses: dart-lang/setup-dart@v1
+
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Validate package
+        run: dart pub publish --dry-run
+
+      - name: Publish package
+        run: dart pub publish --force
