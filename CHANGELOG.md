@@ -1,3 +1,9 @@
+## [0.1.4] - 02/03/2026
+
+- Replicate upstream Dart SDK constraint bump from `ofload/native_updater` PR #35.
+- Update Dart SDK constraint to `>=2.17.0 <4.0.0`.
+- Credit: original change authored by [@rounaktadvi](https://github.com/rounaktadvi) (Rounak Tadvi).
+
 ## [0.1.3] - 02/03/2026
 
 - Replicate upstream AndroidX compatibility fix from `ofload/native_updater` PR #39.
