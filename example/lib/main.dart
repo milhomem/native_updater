@@ -37,9 +37,9 @@ class _HomeState extends State<Home> {
     /// This could get from the API
     int serverLatestVersion = 10;
 
-    Future.delayed(Duration.zero, () {
+    Future.delayed(Duration.zero, () async {
       if (statusCode == 412) {
-        NativeUpdater.displayUpdateAlert(
+       await NativeUpdater.displayUpdateAlert(
           context,
           forceUpdate: true,
           appStoreUrl: '<Your App Store URL>',
@@ -51,7 +51,7 @@ class _HomeState extends State<Home> {
           errorSubtitle: "This version of the app isn't legit"
         );
       } else if (serverLatestVersion > localVersion) {
-        NativeUpdater.displayUpdateAlert(
+        await NativeUpdater.displayUpdateAlert(
           context,
           forceUpdate: false,
           appStoreUrl: '<Your App Store URL>',

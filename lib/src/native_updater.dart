@@ -31,7 +31,7 @@ class NativeUpdater {
   NativeUpdater._internal();
 
   /// Displaying update alert
-  static displayUpdateAlert(
+  static Future<void> displayUpdateAlert(
     BuildContext context, {
     required bool forceUpdate,
     String? appStoreUrl,
@@ -87,7 +87,7 @@ class NativeUpdater {
     Widget alert = UpdateCupertinoAlert(
       forceUpdate: _forceUpdate,
       appName: _appName,
-      appStoreUrl: _appStoreUrl!,
+      appStoreUrl: _appStoreUrl ?? '',
       description: _iOSDescription ?? selectedDefaultDescription,
       updateButtonLabel: _iOSUpdateButtonLabel ?? 'Update',
       closeButtonLabel: _iOSCloseButtonLabel ?? 'Close App',
@@ -97,7 +97,7 @@ class NativeUpdater {
 
     showDialog(
       context: _context,
-      barrierDismissible: _forceUpdate ? false : true,
+      barrierDismissible: !_forceUpdate,
       builder: (BuildContext context) {
         return alert;
       },
@@ -107,9 +107,9 @@ class NativeUpdater {
   void _showMaterialAlertDialog() async {
     /// In App Update Related
     try {
-      AppUpdateInfo _updateInfo = await InAppUpdate.checkForUpdate();
+      AppUpdateInfo updateInfo = await InAppUpdate.checkForUpdate();
 
-      if (_updateInfo.updateAvailability == UpdateAvailability.updateAvailable) {
+      if (updateInfo.updateAvailability == UpdateAvailability.updateAvailable) {
         if (_forceUpdate == true) {
           try {
             await InAppUpdate.performImmediateUpdate();
