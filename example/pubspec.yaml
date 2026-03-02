@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.3
-  dio: ^4.0.0
+  dio: ^5.2.1+1
   native_updater:
     path: ../
 
