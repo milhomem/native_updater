@@ -26,9 +26,9 @@ class _HomeState extends State<Home> {
     /// For example: You got status code of 412 from the
     /// response of HTTP request.
     /// Let's say the statusCode 412 requires you to force update
-    Future.delayed(Duration.zero, () {
+    Future.delayed(Duration.zero, () async {
       if (statusCode == HttpStatus.unauthorized) {
-        NativeUpdater.displayUpdateAlert(
+        await NativeUpdater.displayUpdateAlert(
           context,
           forceUpdate: true,
           appStoreUrl: '<Your App Store URL>',
@@ -61,9 +61,12 @@ class _HomeState extends State<Home> {
     ));
 
     try {
-      Response response = await dio.get('/get');
+      await dio.get('/get');
     } on DioException catch (e) {
-      checkVersion(e.response!.statusCode!);
+      var code = e.response?.statusCode;
+      if(code != null){
+        checkVersion(code);
+      }
     }
   }
 }

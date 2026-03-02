@@ -4,17 +4,18 @@ on:
   push:
     branches:
       - main
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+*'
   workflow_dispatch:
-
-permissions:
-  contents: read
-  id-token: write
 
 jobs:
   publish:
     # Avoid accidental publishes from forks with the same workflow.
     if: github.repository == 'milhomem/native_updater'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # Required for authentication using OIDC
 
     steps:
       - name: Checkout repository

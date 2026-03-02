@@ -13,7 +13,8 @@ class UpdateCupertinoAlert extends StatelessWidget {
   final String ignoreButtonLabel;
   final String alertTitle;
 
-  UpdateCupertinoAlert({
+  const UpdateCupertinoAlert({
+    super.key,
     required this.forceUpdate,
     required this.appName,
     required this.appStoreUrl,
@@ -38,14 +39,20 @@ class UpdateCupertinoAlert extends StatelessWidget {
     );
 
     Widget updateButton = CupertinoDialogAction(
+      isDefaultAction: true,
       child: Text(updateButtonLabel),
-      onPressed: () => launch(appStoreUrl),
+      onPressed: () async {
+        final Uri url = Uri.parse(appStoreUrl);
+        if (await canLaunchUrl(url)) {
+          await launchUrl(url, mode: LaunchMode.externalApplication);
+        }
+      },
     );
 
     return CupertinoAlertDialog(
       title: Text(alertTitle),
       content: Padding(
-        padding: EdgeInsets.only(top: 8.0),
+        padding: const EdgeInsets.only(top: 8.0),
         child: Text(description),
       ),
       actions: [
